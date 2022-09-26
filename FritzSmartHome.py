@@ -15,15 +15,15 @@ class FritzSmartHome:
         username, password = self.db.getAccount("webSolar")
         self.pv = webSolarHandler(username, password) 
 
-        #print(fhh.getDevices().keys())
+       
         self.db.updateSavedDevices(self.fhh.getFHA().get_switch_list())
 
-        #print("new FritzSmartHome")
+    
 
         
     
     def trackPVData(self):
-        #global db, pv
+        
         output = self.pv.getCurrentPowerOutput()
         usage = self.pv.getCurrentPowerUsage()
         gridPower = self.pv.getCurrentGridInput()
@@ -40,11 +40,11 @@ class FritzSmartHome:
 
     
     def getSwitchList(self):
-        #global fhh
+         
         return self.fhh.getDevices()
 
     def getSwitchesInfo(self):
-        #global fhh
+         
         dict = {}
         for device in self.fhh.getDevices():
             dict[device] = self.fhh.getFHA().get_state(device)
@@ -52,7 +52,7 @@ class FritzSmartHome:
         return dict
 
     def getDashboardInfo(self):
-        #global fhh
+         
         dict = {}
         for device in self.fhh.getDevices():
             deviceDict = {}
@@ -66,21 +66,21 @@ class FritzSmartHome:
                 deviceDict["automationState"] = self.db.getAutomationState(device)
                 dict[device] = deviceDict
             except:
-                ##this is only the case if a device is currently not connected to the FirtzBox
-                print("skip")
-        print(dict)
-        print("call in fucntion")
+                ##his is only the case if a device is currently not connected to the FirtzBox
+                continue
+    
+
         return dict
        
         
 
 
     def checkSwitches(self):
-        #global fhh, db, pv
+        
 
         output, usage, grid = self.getPVStats()
         delta = output - usage
-        #delta = -700
+        
 
         devices = self.db.getSavedDeviceInformation()  
         for info in devices:
@@ -126,33 +126,5 @@ if __name__ == "__main__":
     while(True):
         fsh = FritzSmartHome()
         fsh.automate()
-
-
-
-
-
-        
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-#fsh = FritzSmartHome()
-#fsh.checkSwitches()
-print("hello!")
-
-
-
 
 

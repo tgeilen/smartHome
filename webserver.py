@@ -18,11 +18,9 @@ def index():
     
     lastUpdate = datetime.strptime(db.getLastDataInput()[4],"%Y-%m-%d %H:%M:%S")
     warningActive = False
-    print(lastUpdate)
     duration = datetime.utcnow() - lastUpdate
     durationInSec = duration.total_seconds()
     if(durationInSec > 60):
-        print("im in the if")
         warningActive = True
 
     automationRunning = db.getAutomation()==1
@@ -45,7 +43,7 @@ def index():
 def dashbaord():
     db = DBHandler()
 
-    data = db.getPvDataCurrentDay()
+    data = db.getPvData()
     ids = []
     output = []
     usage = []
@@ -61,13 +59,9 @@ def dashbaord():
 @app.route("/updateAutomation", methods=["POST"])
 def updateAutomation():
     db = DBHandler()
-    print(request.form)
+    
     updateTime = request.form.get("updateTime")
-    print(updateTime)
-    print("updatetime")
     timeUnit = request.form.get("timeUnit")
-    print(timeUnit)
-    print("timeUnit")
     multiplier = 0
     if(timeUnit == "h"):
         multiplier == 3600
@@ -77,13 +71,10 @@ def updateAutomation():
         multiplier = 1
 
     db.setUpdateTime(str(round(float(updateTime))*multiplier))
-   
-    #db.setAutomation(1 if request.form.get("automationState") else 0)
+  
     if(request.form.get("automationState") == 'true'):
-        print("hello its working")
         db.setAutomation(1)
     else:
-        print("hello its not asdads working")
         db.setAutomation(0)
     
     return "<head> <meta http-equiv='refresh' content='0; URL=/'></head>"
