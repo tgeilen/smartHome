@@ -11,21 +11,15 @@ This tool is built to run a computer (e.g. as Raspberry Pi) within the network o
 
 Run the following code in your terminal to install and start the tool:
 
-
+```
 git clone https://github.com/tgeilen/smartHome.git
-
 cd smartHome 
-
 python3 -m venv venv 
-
 pip3 install -r requirements.txt 
-
 export FLASK_APP=webserver.py 
-
 flask run
-
 python3 FritzSmartHome.py
-
+```
 
 <a href="https://imgur.com/Kj7ISSG"><img src="https://i.imgur.com/Kj7ISSG.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/Ij5dLTN"><img src="https://i.imgur.com/Ij5dLTN.png" title="source: imgur.com" /></a>
