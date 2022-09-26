@@ -18,7 +18,7 @@ class FHAHandler:
 
             fha = FritzHomeAuto(user,password,host)
 
-            #fha = FritzHomeAuto(user, pw, host)
+            
             print("successfully set up FritzHome Handler")
         except:
             print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")

@@ -1,6 +1,6 @@
 from FHAHandler import FHAHandler
 from DBHandler import DBHandler
-from webSolarHandler import  webSolarHandler
+from webSolarHandler import  WebSolarHandler
 import time
 
 
@@ -13,7 +13,7 @@ class FritzSmartHome:
         username, password = self.db.getAccount("FritzBox")
         self.fhh = FHAHandler(username, password)
         username, password = self.db.getAccount("webSolar")
-        self.pv = webSolarHandler(username, password) 
+        self.pv = WebSolarHandler(username, password) 
 
        
         self.db.updateSavedDevices(self.fhh.getFHA().get_switch_list())

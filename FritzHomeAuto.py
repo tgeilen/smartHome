@@ -100,8 +100,6 @@ class FritzHomeAuto:
                     name = self.get_switch_name(ain)
                     ains[ain] = name
 
-        #print(ains)
-        #print("function call-----------")
         return ains
             
     def get_switch_infos(self):

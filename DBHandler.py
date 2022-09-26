@@ -10,8 +10,8 @@ class DBHandler:
 
     def __init__(self):
 
-        #global c
-        #global conn
+         
+         
 
         self.conn = sqlite3.connect("pvSmartHome.db",check_same_thread=False)
         self.c = self.conn.cursor()
@@ -39,11 +39,9 @@ class DBHandler:
             self.conn.commit()
        
     def updateSavedDevices(self, deviceList: dict):
-        #global c, conn
+         
 
         savedDevices = self.c.execute("SELECT ain FROM powerThresholds").fetchall()
-
-        #print(deviceList)
 
         savedDevicesList = []
         for device in savedDevices:
@@ -51,25 +49,24 @@ class DBHandler:
 
         for device in deviceList:
             if device not in savedDevicesList:
-                #print(device)
                 self.c.execute("INSERT INTO powerThresholds VALUES (?,?,0,0,0,0)",(device,deviceList.get(device) ))
                 self.conn.commit()
  
 
     def getAccount(self,tool: str):
-        #global c
+         
         self.c.execute('SELECT username, password FROM accounts WHERE tool=?',(tool,))
         return self.c.fetchone()
 
     def setAccount(self, tool: str, username: str, pw: str):
-        #global c
-        #global conn
+         
+         
         self.c.execute('DELETE FROM accounts WHERE tool = ?',(tool,))
         self.c.execute('INSERT INTO accounts VALUES (?,?,?)', (tool, username, pw))
         self.conn.commit()
 
     def getSavedDeviceInformation(self):
-        #global c
+         
 
         self.c.execute("SELECT * FROM powerThresholds ORDER BY priority DESC")
 
@@ -77,7 +74,7 @@ class DBHandler:
 
 
     def getThreshold(self, ain: str):
-        #global c
+         
 
         self.c.execute('SELECT threshold FROM powerThresholds WHERE ain = ?',(ain,))
 
@@ -86,16 +83,12 @@ class DBHandler:
        
 
     def setThreshold(self, ain: str, threshold: float):
-        #global c 
-        #global conn
 
-        #c.execute('DELETE FROM powerThresholds WHERE ain = ?',(ain,))
-        #c.execute('INSERT INTO powerThresholds VALUES (?,?)',(ain,threshold))
         self.c.execute("UPDATE powerThresholds SET threshold=? WHERE ain=?",(threshold,ain))
         self.conn.commit()
 
     def getPriority(self, ain: str):
-        #global c
+        
 
         self.c.execute('SELECT priority FROM powerThresholds WHERE ain = ?',(ain,))
 
@@ -104,46 +97,43 @@ class DBHandler:
        
 
     def setPriority(self, ain: str, priority: int):
-        #global c 
-        #global conn
-
-        
+          
         self.c.execute("UPDATE powerThresholds SET priority=? WHERE ain=?",(priority,ain))
         self.conn.commit()
 
     def getAutomationState(self, ain:str):
-        #global c
+         
 
         self.c.execute("SELECT automationState FROM powerThresholds WHERE ain=?",(ain,))
         return (self.c.fetchone()[0] == 1)
 
     def activateDevice(self, ain:str):
-        #global c, conn
+         
 
         self.c.execute("UPDATE powerThresholds SET automationState=1 WHERE ain=?",(ain,))
         self.conn.commit()
      
     def deactivateDevice(self, ain:str):
-        #global c, conn
+         
 
         self.c.execute("UPDATE powerThresholds SET automationState=0 WHERE ain=?",(ain,))
         self.conn.commit()
 
     def addPvOutput(self,output: float):
-        #global c, conn
+         
 
         self.c.execute("INSERT INTO pvOutput (output) VALUES (?) ",(output,))
         self.conn.commit()
 
     def addPvData(self, output: float, usage: float, gridPower: float):
-        #global c, conn
+         
         print("outout: " + str(output) + "  usage: " + str(usage) + "  gridPower: " + str(gridPower))
         self.c.execute("INSERT INTO pvStats (output, usage, gridPower) VALUES (?,?,?) ",(output,usage, gridPower))
         self.conn.commit()
 
 
     def trackStateChange(self, ain: str, stateChangeType: str):
-        #global c, conn
+         
 
         self.c.execute('INSERT INTO powerStateChange (ain, stateChange) VALUES (?,?)',(ain, stateChangeType))
         self.conn.commit()
@@ -158,7 +148,7 @@ class DBHandler:
         print("Account for " + tool + " updated")
 
     def getUpdateTime(self):
-        #global c
+         
 
         self.c.execute('SELECT updateTime FROM settings')
         
@@ -167,8 +157,8 @@ class DBHandler:
        
 
     def setUpdateTime(self, updateTime: int):
-        #global c 
-        #global conn
+          
+         
 
         
         self.c.execute("UPDATE settings SET updateTime=?",(updateTime,))
@@ -176,7 +166,7 @@ class DBHandler:
         
     
     def getAutomation(self):
-        #global c
+         
 
         self.c.execute('SELECT automation FROM settings')
 
@@ -185,8 +175,8 @@ class DBHandler:
        
 
     def setAutomation(self, automation: int):
-        #global c 
-        #global conn  
+          
+           
         self.c.execute("UPDATE settings SET automation=?",(automation,))
         self.conn.commit()
 
@@ -226,8 +216,8 @@ class DBHandler:
 
 
     def closeConnection(self):
-        #global c
-        #global conn
+         
+         
         self.c.close()
         self.conn.close()
         
