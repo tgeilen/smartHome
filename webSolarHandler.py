@@ -9,7 +9,7 @@ import datetime
 import os
 import random
 
-from Settings import Settings
+
 
 class webSolarHandler:
 

@@ -1,6 +1,6 @@
 
 from FritzHomeAuto import FritzHomeAuto
-from Settings import Settings
+
 
 
 class FHAHandler:
