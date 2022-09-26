@@ -20,6 +20,6 @@ flask run
 python3 FritzSmartHome.py
 
 
-[Imgur](https://i.imgur.com/Ij5dLTN.png)
-[Imgur](https://i.imgur.com/t5yJuyD.png)
-[Imgur](https://i.imgur.com/Kj7ISSG.png)
+[alt text](https://i.imgur.com/Ij5dLTN.png)
+[alt text](https://i.imgur.com/t5yJuyD.png)
+[alt text](https://i.imgur.com/Kj7ISSG.png)
