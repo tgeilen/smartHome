@@ -1,10 +1,6 @@
 from concurrent.futures import thread
 from crypt import methods
-from logging import FileHandler
-from operator import truediv
-from turtle import update
 from DBHandler import DBHandler
-from FritzSmartHome import FritzSmartHome
 from flask import Flask, request, redirect, url_for, render_template, Request
 from automationThread import automationThread
 from datetime import datetime
