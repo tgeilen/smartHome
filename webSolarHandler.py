@@ -1,13 +1,6 @@
-from dataclasses import replace
-from operator import truediv
-from webbrowser import get
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
-import sqlite3
-import datetime
-import os
-import random
 
 
 

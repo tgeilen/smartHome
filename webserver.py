@@ -1,8 +1,6 @@
-from concurrent.futures import thread
-from crypt import methods
+
 from DBHandler import DBHandler
 from flask import Flask, request, redirect, url_for, render_template, Request
-from automationThread import automationThread
 from datetime import datetime
  
 

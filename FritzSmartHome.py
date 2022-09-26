@@ -1,6 +1,3 @@
-from doctest import OutputChecker
-from traceback import print_stack
-from turtle import update
 from FHAHandler import FHAHandler
 from DBHandler import DBHandler
 from webSolarHandler import  webSolarHandler
