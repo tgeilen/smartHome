@@ -4,7 +4,7 @@ import time
 
 
 
-class webSolarHandler:
+class WebSolarHandler:
 
     def __init__(self, username: str, passwort: str):
         
@@ -59,7 +59,6 @@ class webSolarHandler:
             while(pageLoading):
                 try:
                     cookie_button = driver.find_element(By.XPATH,'//button[@id="CybotCookiebotDialogBodyButtonDecline"]')
-                    #print(cookie_button)
                     cookie_button.click()
                     pageLoading = False
                 except:
@@ -135,20 +134,7 @@ class webSolarHandler:
         global driver
         driver.close()
 
-        
-'''
-    def test():
-        counter = 1
 
-        while(counter <= 10):
-            output = (getCurrentPowerOutput())
-            usage = (getCurrentPowerUsage())
-            input = (getCurrentGridInput())
-            print(str(counter) + ": " +str(output) + " - " + str(usage) + " = " + str(output-usage))
-            print(str(counter) + ": " +str(output) + " - " + str(usage) + " = " + str(input))
-            time.sleep(3)
-            counter=counter+1
-'''
 
 
 
