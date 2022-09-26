@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} Settings{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+<h1>Settings - {{ name }}</h1>
+
+    <form method="POST" action="/updateInformation">
+
+        <input type="hidden" name="ain" value={{ain}}>
+
+        <div class="col-12 mt-1">
+         <label for="thresholdInput">Threshold in W<br> </label>
+        <input type="number" placeholder="{{threshold}}" class="form-control" name="thresholdInput" access="false" value="{{threshold}}" maxlength="9" id="threshold">
+        </div>
+
+        <div class="col-12 m-2">
+            <div class="col-12"></div>
+        </div>
+
+        <div class="form-check">
+        <input type="radio" id="on" class="form-check-input" name="automationState" value=true {% if automationState %} checked="checked" {% endif %}  >
+        <label class="form-check-label" for="on">ON</label>
+        </div>
+
+        <div class="form-check">
+            <input type="radio" id="off" class="form-check-input" name="automationState" value=false {% if not automationState %} checked="checked" {% endif %}  >
+             <label class="form-check-label" for="off">OFF</label>
+        </div>
+
+
+        <div class="col-12">
+            <label for="priority" class="text-center t-2 form-label">Priority</label>
+            <input type="range" class="form-range btn-block"  name="priority" value="{{priority}}" min="0" max="10" step="1" id="priority">
+        </div>
+
+        
+
+ 
+
+    <button class="btn btn-block btn-secondary mt-1" type="submit">Save changes</button>
+    </form>
+
+</div>
+
+{% endblock %}

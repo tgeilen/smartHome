@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block title %} SmartHome {% endblock %}
+
+
+{% block content %}
+
+
+<body>
+    <div class="container">
+
+        {% if warningActive %}
+
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-danger">
+                    <h3 class="text-center"> No new data was added in a long time. Make sure the program is still running.</h3>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+
+        <div class="row">
+
+
+            <div class="col-12 col-lg-3">
+                <div class="card pt-1 my-2 rounded
+                {% if automationRunning %}
+
+                alert alert-success
+
+                {% else %}
+
+                alert alert-danger
+
+                {% endif %}
+                
+                ">
+                    <div class="card-body">
+
+                        <h3 class="card-title text-center"> Settings</h3>
+
+
+                        <form method="POST" action="/updateAutomation">
+
+                            <div class="row">
+                                <div class="col-6 mt-1">
+
+                                    <input type="number" placeholder="{{updateTime}}" class="form-control"
+                                        name="updateTime" access="false" value="{{updateTime}}" maxlength="9"
+                                        id="updateTime">
+                                </div>
+
+                                <div class="col-6 mt-1" >
+                                    <select class="form-control form-select" name="timeUnit" id="timeUnit" aria-label={{ timeUnit }}>
+                                        <option value="sec" {% if timeUnit == "sec" %} selected="selected" {% endif %}>sec</option>
+                                        <option value="min" {% if timeUnit == "min" %} selected="selected" {% endif %}>min</option>
+                                        <option value="h" {% if timeUnit == "h" %} selected="selected" {% endif %}>h</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input type="radio" id="on" class="form-check-input" name="automationState" value=true
+                                            {% if automationRunning %} checked="checked" {% endif %}>
+                                          <label class="form-check-label" for="on">ON</label>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input type="radio" id="off" class="form-check-input" name="automationState" value=false
+                                            {% if not automationRunning %} checked="checked" {% endif %}>
+                                         <label class="form-check-label" for="off">OFF</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <hr>
+
+
+                            <button class="btn btn-block btn-secondary mt-1" type="submit">Save changes</button>
+
+
+                        </form>
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            {% for device in deviceInformation %}
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card pt-1 my-2 bg-light rounded
+                {% if device[5] == 1%}
+
+                border border-success
+
+                {% else %}
+
+                border border-danger
+
+                {% endif %}
+                
+                ">
+                    <div class="card-body">
+
+                        <h3 class="card-title text-center">{{ device[1] }}</h3>
+
+
+                        <p><b>AutomationState</b> :
+
+                            {% if device[4] == 1%}
+
+                            ON
+
+                            {% else %}
+
+                            OFF
+
+                            {% endif %}
+
+                        </p>
+
+                        <p><b>Threshold</b> : {{ device[2] }} </p>
+                        <p><b>Priority</b> : {{ device[3] }} </p>
+
+                        <form action="/settings" method="POST">
+                            <input type="hidden" name="ain" value={{device[0]}}>
+                            <input type="hidden" name="name" value={{device[1]}}>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-secondary  btn-block" type="submit">Change
+                                        Settings</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            
+
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+
+                <a href="/statistics" class="btn btn-warning btn-block" role="button">See statistics</a>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    {% endblock %}

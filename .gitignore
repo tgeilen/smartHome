@@ -1,0 +1,13 @@
+__pycache__/
+venv/
+
+
+Settings.py
+SimpleOOPTest.py
+dbTest.py
+automationThread.py
+command.txt
+geckodriver.log
+pvSmartHome.db
+test.py
+.idea

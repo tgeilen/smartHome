@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %} Statistics {% endblock %}
+
+
+{% block content %}
+
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+  
+<hr>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Output</th>
+        <th scope="col">Usage</th>
+        <th scope="col">Grid Input</th>
+        <th scope="col">Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for entry in data %}
+      <tr>
+        <td>{{entry[0]}}</td>
+        <td>{{entry[1]}}</td>
+        <td>{{entry[2]}}</td>
+        <td>{{entry[3]}}</td>
+        <td>{{entry[4]}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+
+<script>
+
+const labels = {{ids}};
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: 'Output',
+      data: {{output}},
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(255, 99, 132)',
+      yAxisID: 'y',
+    },
+    {
+      label: 'Grid Input',
+      data: {{gridInput}},
+      borderColor: 'rgb(255, 128, 0)',
+      backgroundColor: 'rgb(255, 128, 0)',
+      yAxisID: 'y',
+    },{
+      label: 'Usage',
+      data: {{usage}},
+      borderColor: 'rgb(128, 128, 128)',
+      backgroundColor: 'rgb(128, 128, 128)',
+      yAxisID: 'y',
+    }
+  ]
+};
+
+
+    
+  
+    const config = {
+  type: 'line',
+  data: data,
+  options: {
+    responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
+    stacked: false,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Overview'
+      }
+    },
+    scales: {
+      y: {
+        type: 'linear',
+        display: true,
+        position: 'left',
+      },
+    }
+  },
+};
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  </script>
+
+
+{% endblock %}
