@@ -1,5 +1,4 @@
-## Fritz SmartHome Automation
-
+## Solenuo - Solar Energy Usage Optimiser
 This tool allows to automatically power on and off AVM SmartHome Switches depending on the power output of solar panels.
 
 Via a web app the automation can be activated or deactivated and thresholds can be set for all connected smarthome devices.
