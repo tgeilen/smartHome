@@ -125,6 +125,7 @@ class FritzSmartHome:
 if __name__ == "__main__":
     while(True):
         fsh = FritzSmartHome()
+        print("Setup complete")
         fsh.automate()
 
 
