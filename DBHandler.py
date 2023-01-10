@@ -183,9 +183,14 @@ class DBHandler:
     
     def getLastDataInput(self):
 
-        self.c.execute("SELECT * FROM pvStats ORDER BY id DESC LIMIT 1 ")
-
-        return self.c.fetchone()
+        self.c.execute("SELECT COUNT(*) FROM pvStats")
+        
+        if(self.c.fetchone()[0] != 0):
+            self.c.execute("SELECT * FROM pvStats ORDER BY id DESC LIMIT 1 ")
+            return self.c.fetchone()
+        else:
+            #database is empty, return first date
+            return [0,0,0,0,"1970-01-01 00:00:00"]
 
     def getPvData(self):
 
