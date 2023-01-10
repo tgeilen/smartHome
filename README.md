@@ -16,7 +16,7 @@ cd smartHome
 python3 -m venv venv 
 pip3 install -r requirements.txt 
 export FLASK_APP=webserver.py 
-flask run
+flask run --host=0.0.0.0
 python3 FritzSmartHome.py
 ```
 
