@@ -2,8 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.utils import ChromeType
+from webdriver_manager.firefox import GeckoDriverManager
+
+
 
 
 class WebSolarHandler:
@@ -17,7 +18,7 @@ class WebSolarHandler:
         ##setup and open website
         url='https://www.solarweb.com/Account/ExternalLogin'
     
-        driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
 
         time.sleep(2)
         driver.get(url)
