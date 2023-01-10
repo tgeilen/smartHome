@@ -1,5 +1,4 @@
-## Fritz SmartHome Automation
-
+## Solenuo - Solar Energy Usage Optimiser
 This tool allows to automatically power on and off AVM SmartHome Switches depending on the power output of solar panels.
 
 Via a web app the automation can be activated or deactivated and thresholds can be set for all connected smarthome devices.
@@ -12,7 +11,7 @@ This tool is built to run a computer (e.g. as Raspberry Pi) within the network o
 Run the following code in your terminal to install and start the tool:
 
 ```
-git clone https://github.com/tgeilen/smartHome.git
+git clone https://github.com/tgeilen/solenuo.git
 cd smartHome 
 python3 -m venv venv 
 pip3 install -r requirements.txt 
