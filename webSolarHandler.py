@@ -2,8 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 
 
@@ -20,7 +21,13 @@ class WebSolarHandler:
         ##setup and open website
         url='https://www.solarweb.com/Account/ExternalLogin'
     
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        options = Options()
+        # browser is Chromium instead of Chrome
+        options.BinaryLocation = "/usr/bin/chromium-browser"
+        # we use custom chromedriver for raspberry
+        driver_path = "/usr/bin/chromedriver"
+        driver = webdriver.Chrome(options=options, service=Service(driver_path))
+
         time.sleep(2)
         driver.get(url)
         
